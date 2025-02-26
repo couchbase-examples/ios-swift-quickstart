@@ -20,12 +20,11 @@ class DatabaseManager {
     
     func queryAllElements() -> [Hotel]? {
         do {
-            guard let collection = try database?.createCollection(name: "hotel", scope: "inventory") else { return nil }
-            let query = QueryBuilder
-                .select(SelectResult.all())
-                .from(DataSource.collection(collection))
-            let results = try query.execute()
+            
+            let query = try database?.createQuery("SELECT * FROM inventory.hotel WHERE type = 'hotel'")
+            let results = try query?.execute()
             var hotels: [Hotel] = []
+            guard let results else { return nil }
             for result in results {
                 let hotelDocumentModel = try JSONDecoder().decode(hotelDocumentModel.self, from: Data(result.toJSON().utf8))
                 hotels.append(hotelDocumentModel.hotel)
@@ -33,6 +32,56 @@ class DatabaseManager {
             return hotels
         } catch {
             fatalError("Error running the query")
+        }
+    }
+    
+    func addNewElement(_ hotel: Hotel) {
+        do {
+            guard let collection = try database?.createCollection(name: "hotel", scope: "inventory") else { return }
+            let doc = MutableDocument()
+            let encodedHotel: Data = try JSONEncoder().encode(hotel)
+            guard let jsonString = String(data: encodedHotel, encoding: .utf8) else { return }
+            try doc.setJSON(jsonString)
+            try collection.save(document: doc)
+        } catch {
+            
+        }
+    }
+    
+    func updateExistingElement(_ hotel: Hotel) {
+        do {
+            guard let collection = try database?.createCollection(name: "hotel", scope: "inventory") else { return }
+            let query = try database?.createQuery("SELECT META().id FROM inventory.hotel WHERE type = 'hotel' AND id = \(hotel.id)")
+            guard let results = try query?.execute() else { return }
+            for result in results {
+                let docsProps = result.toDictionary()
+                guard let docid = docsProps["id"] as? String else { return }
+                let doc = try collection.document(id: docid)
+                guard let mutableDoc: MutableDocument = doc?.toMutable() else { return }
+                let encodedHotel: Data = try JSONEncoder().encode(hotel)
+                guard let jsonString = String(data: encodedHotel, encoding: .utf8) else { return }
+                try mutableDoc.setJSON(jsonString)
+                try collection.save(document: mutableDoc)
+            }
+        } catch {
+            
+        }
+    }
+    
+    func deleteElement(_ hotel: Hotel) {
+        do {
+            guard let collection = try database?.createCollection(name: "hotel", scope: "inventory") else { return }
+            let query = try database?.createQuery("SELECT META().id FROM inventory.hotel WHERE type = 'hotel' AND id = \(hotel.id)")
+            
+            guard let results = try query?.execute() else { return }
+            for result in results {
+                let docsProps = result.toDictionary()
+                guard let docid = docsProps["id"] as? String else { return }
+                guard let doc = try collection.document(id: docid) else { return }
+                try collection.delete(document: doc)
+            }
+        } catch {
+            
         }
     }
     
