@@ -6,7 +6,7 @@ class DatabaseManager {
     var database: Database?
     
     init() {
-        Database.log.console.level = .debug
+        Database.log.console.level = .verbose
         initializeDatabase()
     }
     
@@ -70,7 +70,7 @@ class DatabaseManager {
     
     func deleteElement(_ hotel: Hotel) {
         do {
-            guard let collection = try database?.createCollection(name: "hotel", scope: "inventory") else { return }
+            guard let collection = try database?.collection(name: "hotel", scope: "inventory") else { return }
             let query = try database?.createQuery("SELECT META().id FROM inventory.hotel WHERE type = 'hotel' AND id = \(hotel.id)")
             
             guard let results = try query?.execute() else { return }
@@ -88,18 +88,8 @@ class DatabaseManager {
     private func getStartedWithReplication (replication: Bool) throws {
         let configuration: ConfigurationModel? = ConfigurationManager.shared.getConfiguration()
         // Get the database (and create it if it doesn’t exist).
-        let path = Bundle.main.path(forResource: "travel-sample", ofType: "cblite2")!
-        if !Database.exists(withName: "travel-sample") {
-            do {
-                try Database.copy(fromPath: path, toDatabase: "travel-sample", withConfig: nil)
-            } catch {
-                fatalError("Could not load pre-built database")
-            }
-        }
         database = try Database(name: "travel-sample")
-        guard let collection = try database?.createCollection(name: "hotel", scope: "inventory") else { return }
-        
-        
+        guard let collection = try database?.collection(name: "hotel", scope: "inventory") else { return }
         
         if replication {
             guard let configuration else {
@@ -115,6 +105,12 @@ class DatabaseManager {
             replConfig.authenticator = BasicAuthenticator(username: configuration.username, password: configuration.password)
             
             replConfig.addCollection(collection)
+            
+            // set auto-purge behavior (here we override default)
+            replConfig.enableAutoPurge = false
+
+            // Configure Sync Mode
+            replConfig.continuous = true
             
             // Create replicator (make sure to add an instance or static variable named replicator)
             replicator = Replicator(config: replConfig)

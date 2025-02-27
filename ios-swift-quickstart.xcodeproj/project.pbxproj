@@ -36,9 +36,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		EC66AF512D6C70550001B8B5 /* ios-swift-quickstart */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			explicitFolders = (
-				"Assets/travel-sample.cblite2",
-			);
 			path = "ios-swift-quickstart";
 			sourceTree = "<group>";
 		};
