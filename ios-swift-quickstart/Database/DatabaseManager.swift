@@ -1,13 +1,21 @@
 import CouchbaseLiteSwift
+import Combine
 
 class DatabaseManager {
     static let shared = DatabaseManager()
     var replicator: Replicator?
     var database: Database?
+    var lastQuery: Query?
+    var lastQueryToken: ListenerToken?
+    private let queryUpdatesSubject = CurrentValueSubject<[Hotel], Never>([])
     
     init() {
         Database.log.console.level = .verbose
         initializeDatabase()
+    }
+    
+    var queryUpdates: AnyPublisher<[Hotel], Never> {
+        queryUpdatesSubject.eraseToAnyPublisher()
     }
     
     private func initializeDatabase() {
@@ -18,26 +26,45 @@ class DatabaseManager {
         }
     }
     
-    func queryAllElements() -> [Hotel]? {
-        do {
-            
-            let query = try database?.createQuery("SELECT * FROM inventory.hotel WHERE type = 'hotel'")
-            let results = try query?.execute()
+    private func startListeningForChanges(query: Query) {
+        lastQuery = query
+        lastQueryToken = query.addChangeListener { (change) in
+            guard let results = change.results else { return }
             var hotels: [Hotel] = []
-            guard let results else { return nil }
             for result in results {
-                let hotelDocumentModel = try JSONDecoder().decode(hotelDocumentModel.self, from: Data(result.toJSON().utf8))
-                hotels.append(hotelDocumentModel.hotel)
+                let hotelDocumentModel = try? JSONDecoder().decode(hotelDocumentModel.self, from: Data(result.toJSON().utf8))
+                guard let hotel = hotelDocumentModel?.hotel else { continue }
+                hotels.append(hotel)
             }
-            return hotels
-        } catch {
-            fatalError("Error running the query")
+            self.queryUpdatesSubject.send(hotels)
         }
+    }
+    
+    private func stopListeningForChanges() {
+        guard let lastQueryToken = lastQueryToken else { return }
+        lastQuery?.removeChangeListener(withToken: lastQueryToken)
+    }
+    
+    func queryElements(descending: Bool = false) {// -> [Hotel]? {
+        do {
+            stopListeningForChanges()
+            guard let query = try database?.createQuery("SELECT * FROM inventory.hotel WHERE type = 'hotel' ORDER BY title \(descending ? "DESC" : "ASC")") else { return }
+            startListeningForChanges(query: query)
+           // let results = try query.execute()
+           // var hotels: [Hotel] = []
+//            for result in results {
+//                let hotelDocumentModel = try JSONDecoder().decode(hotelDocumentModel.self, from: Data(result.toJSON().utf8))
+//                hotels.append(hotelDocumentModel.hotel)
+//            }
+//            return hotels
+        } catch {
+        }
+//        return nil
     }
     
     func addNewElement(_ hotel: Hotel) {
         do {
-            guard let collection = try database?.createCollection(name: "hotel", scope: "inventory") else { return }
+            guard let collection = try database?.collection(name: "hotel", scope: "inventory") else { return }
             let doc = MutableDocument()
             let encodedHotel: Data = try JSONEncoder().encode(hotel)
             guard let jsonString = String(data: encodedHotel, encoding: .utf8) else { return }
@@ -50,7 +77,7 @@ class DatabaseManager {
     
     func updateExistingElement(_ hotel: Hotel) {
         do {
-            guard let collection = try database?.createCollection(name: "hotel", scope: "inventory") else { return }
+            guard let collection = try database?.collection(name: "hotel", scope: "inventory") else { return }
             let query = try database?.createQuery("SELECT META().id FROM inventory.hotel WHERE type = 'hotel' AND id = \(hotel.id)")
             guard let results = try query?.execute() else { return }
             for result in results {
@@ -89,7 +116,7 @@ class DatabaseManager {
         let configuration: ConfigurationModel? = ConfigurationManager.shared.getConfiguration()
         // Get the database (and create it if it doesn’t exist).
         database = try Database(name: "travel-sample")
-        guard let collection = try database?.collection(name: "hotel", scope: "inventory") else { return }
+        guard let collection = try database?.createCollection(name: "hotel",scope: "inventory") else { return }
         
         if replication {
             guard let configuration else {
@@ -103,14 +130,8 @@ class DatabaseManager {
             
             // Add authentication.
             replConfig.authenticator = BasicAuthenticator(username: configuration.username, password: configuration.password)
-            
-            replConfig.addCollection(collection)
-            
-            // set auto-purge behavior (here we override default)
-            replConfig.enableAutoPurge = false
 
-            // Configure Sync Mode
-            replConfig.continuous = true
+            replConfig.addCollection(collection)
             
             // Create replicator (make sure to add an instance or static variable named replicator)
             replicator = Replicator(config: replConfig)
