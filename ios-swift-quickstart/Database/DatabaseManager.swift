@@ -5,6 +5,7 @@ class DatabaseManager {
     static let shared = DatabaseManager()
     var replicator: Replicator?
     var database: Database?
+    var collection: Collection?
     var lastQuery: Query?
     var lastQueryToken: ListenerToken?
     private let queryUpdatesSubject = CurrentValueSubject<[Hotel], Never>([])
@@ -20,6 +21,11 @@ class DatabaseManager {
     
     private func initializeDatabase() {
         do {
+            // Get the database (and create it if it doesn’t exist).
+            database = try Database(name: "travel-sample")
+            collection = try database?.createCollection(name: "hotel",scope: "inventory")
+            let indexConfig = FullTextIndexConfiguration(["name"],language: "en")
+            try collection?.createIndex(withName: "hotelNameIndex", config: indexConfig)
             try getStartedWithReplication(replication: true)
         } catch {
             fatalError("Error initializing database")
@@ -49,7 +55,6 @@ class DatabaseManager {
         do {
             stopListeningForChanges()
             guard let query = try database?.createQuery("SELECT * FROM inventory.hotel WHERE  \(textSearch != nil ? "MATCH(hotelNameIndex, '\(textSearch ?? "")') AND " : "")type = 'hotel' ORDER BY name \(descending ? "DESC" : "ASC")") else { return }
-//            guard let query = try database?.createQuery("SELECT * FROM inventory.hotel WHERE  MATCH(hotelNameIndex, *)") else { return }
             startListeningForChanges(query: query)
             print(try query.explain())
         } catch {
@@ -108,11 +113,6 @@ class DatabaseManager {
     
     private func getStartedWithReplication (replication: Bool) throws {
         let configuration: ConfigurationModel? = ConfigurationManager.shared.getConfiguration()
-        // Get the database (and create it if it doesn’t exist).
-        database = try Database(name: "travel-sample")
-        guard let collection = try database?.createCollection(name: "hotel",scope: "inventory") else { return }
-        let indexConfig = FullTextIndexConfiguration(["name"],language: "en")
-        try collection.createIndex(withName: "hotelNameIndex", config: indexConfig)
         
         if replication {
             guard let configuration else {
@@ -122,25 +122,19 @@ class DatabaseManager {
             // Create replicators to push and pull changes to and from the cloud.
             let targetEndpoint = URLEndpoint(url: configuration.capellaEndpointURL)
             var replConfig = ReplicatorConfiguration(target: targetEndpoint)
-            replConfig.replicatorType = .pushAndPull
+            replConfig.continuous = true
             
             // Add authentication.
             replConfig.authenticator = BasicAuthenticator(username: configuration.username, password: configuration.password)
-
+            
+            guard let collection else { return }
             replConfig.addCollection(collection)
             
             // Create replicator (make sure to add an instance or static variable named replicator)
             replicator = Replicator(config: replConfig)
-            guard let replicator else { return }
-            // Listen to replicator change events.
-            replicator.addChangeListener { (change) in
-                if let error = change.status.error as NSError? {
-                    print("Error code :: \(error.code)")
-                }
-            }
             
             // Start replication.
-            replicator.start()
+            replicator?.start()
         } else {
             print("Not running replication")
         }

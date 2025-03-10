@@ -1,5 +1,4 @@
 {
-  "originHash" : "73c4650bb413876d90d6a43a2704014e13fa612ee6f87d8d10a301e0b3c14d1e",
   "pins" : [
     {
       "identity" : "couchbase-lite-ios",
@@ -11,5 +10,5 @@
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }
