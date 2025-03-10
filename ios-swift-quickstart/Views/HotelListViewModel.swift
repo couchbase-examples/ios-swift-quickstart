@@ -19,7 +19,7 @@ class HotelListViewModel: ObservableObject {
     }
     
     func onSearchTextChanged(_ text: String) {
-        print(text)
+        queryAllHotels()
     }
     
     private func bindListeners() {
@@ -32,8 +32,9 @@ class HotelListViewModel: ObservableObject {
     }
     
     private func queryAllHotels() {
-        //hotels =
-        DatabaseManager.shared.queryElements(descending: descendingList)
+        Task {
+            DatabaseManager.shared.queryElements(descending: descendingList,textSearch: searchText.isEmpty ? nil : searchText)
+        }
     }
     
     func onSortButtonTapped() {

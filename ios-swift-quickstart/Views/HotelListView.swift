@@ -35,7 +35,7 @@ struct HotelListView: View {
                     }
                 }
                 .listStyle(.plain)
-                .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search name by regex")
+                .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search by Name")
                 .onChange(of: viewModel.searchText) { newValue in
                     viewModel.onSearchTextChanged(newValue)
                 }
@@ -84,7 +84,7 @@ struct HotelListView: View {
         } label: {
             VStack{
                 HStack {
-                    Text(item.title)
+                    Text(item.name ?? "")
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
                         .frame(maxWidth: .infinity)

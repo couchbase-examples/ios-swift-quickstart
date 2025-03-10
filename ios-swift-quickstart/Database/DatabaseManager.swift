@@ -45,21 +45,15 @@ class DatabaseManager {
         lastQuery?.removeChangeListener(withToken: lastQueryToken)
     }
     
-    func queryElements(descending: Bool = false) {// -> [Hotel]? {
+    func queryElements(descending: Bool = false, textSearch: String? = nil) {
         do {
             stopListeningForChanges()
-            guard let query = try database?.createQuery("SELECT * FROM inventory.hotel WHERE type = 'hotel' ORDER BY title \(descending ? "DESC" : "ASC")") else { return }
+            guard let query = try database?.createQuery("SELECT * FROM inventory.hotel WHERE  \(textSearch != nil ? "MATCH(hotelNameIndex, '\(textSearch ?? "")') AND " : "")type = 'hotel' ORDER BY name \(descending ? "DESC" : "ASC")") else { return }
+//            guard let query = try database?.createQuery("SELECT * FROM inventory.hotel WHERE  MATCH(hotelNameIndex, *)") else { return }
             startListeningForChanges(query: query)
-           // let results = try query.execute()
-           // var hotels: [Hotel] = []
-//            for result in results {
-//                let hotelDocumentModel = try JSONDecoder().decode(hotelDocumentModel.self, from: Data(result.toJSON().utf8))
-//                hotels.append(hotelDocumentModel.hotel)
-//            }
-//            return hotels
+            print(try query.explain())
         } catch {
         }
-//        return nil
     }
     
     func addNewElement(_ hotel: Hotel) {
@@ -117,6 +111,8 @@ class DatabaseManager {
         // Get the database (and create it if it doesn’t exist).
         database = try Database(name: "travel-sample")
         guard let collection = try database?.createCollection(name: "hotel",scope: "inventory") else { return }
+        let indexConfig = FullTextIndexConfiguration(["name"],language: "en")
+        try collection.createIndex(withName: "hotelNameIndex", config: indexConfig)
         
         if replication {
             guard let configuration else {
