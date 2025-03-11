@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "couchbase-lite-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/couchbase/couchbase-lite-ios.git",
+      "state" : {
+        "revision" : "f2d4fbab5108dad93f619cc51f3c311e8ae33565",
+        "version" : "3.2.1"
+      }
+    }
+  ],
+  "version" : 2
+}
