@@ -2,7 +2,7 @@
 //  ios_swift_quickstartUITestsLaunchTests.swift
 //  ios-swift-quickstartUITests
 //
-//  Created by Dominik Brozio on 24/02/2025.
+//  Created by Dominik Brozio on 12/03/2025.
 //
 
 import XCTest
@@ -17,7 +17,6 @@ final class ios_swift_quickstartUITestsLaunchTests: XCTestCase {
         continueAfterFailure = false
     }
 
-    @MainActor
     func testLaunch() throws {
         let app = XCUIApplication()
         app.launch()
