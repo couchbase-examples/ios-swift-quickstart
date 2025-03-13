@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EC132B1F2D81B28B0020C772 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC132B1E2D81B28B0020C772 /* Assets.xcassets */; };
 		EC132B222D81B28B0020C772 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC132B212D81B28B0020C772 /* Preview Assets.xcassets */; };
 		EC132B2C2D81B28B0020C772 /* ios_swift_quickstartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC132B2B2D81B28B0020C772 /* ios_swift_quickstartTests.swift */; };
 		EC132B362D81B28B0020C772 /* ios_swift_quickstartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC132B352D81B28B0020C772 /* ios_swift_quickstartUITests.swift */; };
@@ -57,7 +56,6 @@
 
 /* Begin PBXFileReference section */
 		EC132B172D81B2890020C772 /* ios-swift-quickstart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-swift-quickstart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC132B1E2D81B28B0020C772 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC132B212D81B28B0020C772 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EC132B272D81B28B0020C772 /* ios-swift-quickstartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-swift-quickstartTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC132B2B2D81B28B0020C772 /* ios_swift_quickstartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_swift_quickstartTests.swift; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 				EC132B522D81B2E40020C772 /* Models */,
 				EC132B622D81B2E40020C772 /* NetworkMonitor */,
 				EC132B572D81B2E40020C772 /* Views */,
-				EC132B1E2D81B28B0020C772 /* Assets.xcassets */,
 				EC132B202D81B28B0020C772 /* Preview Content */,
 			);
 			path = "ios-swift-quickstart";
@@ -369,7 +366,6 @@
 				EC132B682D81B2E40020C772 /* Config.plist in Resources */,
 				EC132B222D81B28B0020C772 /* Preview Assets.xcassets in Resources */,
 				EC132B652D81B2E40020C772 /* Assets.xcassets in Resources */,
-				EC132B1F2D81B28B0020C772 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
