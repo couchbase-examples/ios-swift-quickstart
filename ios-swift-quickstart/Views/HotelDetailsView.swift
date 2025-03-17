@@ -7,27 +7,43 @@ struct HotelDetailsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
-                Text(hotel.title).font(.largeTitle).bold()
-                Text(hotel.description).font(.body)
+                Text(hotel.name ?? "")
+                    .font(.largeTitle)
+                    .bold()
+                Text(hotel.title)
+                    .font(.body)
+                Text(hotel.description)
+                    .font(.body)
+                    .multilineTextAlignment(.leading)
+                    .frame(maxWidth:.infinity, alignment: .leading)
                 
-                GroupBox(label: Text("Location")) {
-                    Text("Address: \(hotel.address ?? "N/A")")
-                    Text("City: \(hotel.city ?? "N/A"), State: \(hotel.state ?? "N/A"), Country: \(hotel.country)")
-                    Text("Coordinates: \(hotel.geo.lat), \(hotel.geo.lon) - Accuracy: \(hotel.geo.accuracy)")
-                }
-                
-                GroupBox(label: Text("Contact Information")) {
-                    Text("Phone: \(hotel.phone ?? "N/A")")
-                    Text("Email: \(hotel.email ?? "N/A")")
-                    Text("Website: \(hotel.url ?? "N/A")")
-                }
-                
-                GroupBox(label: Text("Amenities")) {
-                    Text(hotel.vacancy ? "Vacancy: Available" : "Vacancy: Full")
-                    Text(hotel.petsOk ? "Pets Allowed" : "No Pets")
-                    Text(hotel.freeBreakfast ? "Free Breakfast Available" : "No Free Breakfast")
-                    Text(hotel.freeInternet ? "Free Internet Available" : "No Free Internet")
-                    Text(hotel.freeParking ? "Free Parking Available" : "No Free Parking")
+                GroupBox {
+                    VStack(alignment: .leading) {
+                        Text("Address: \(hotel.address ?? "N/A")")
+                        Text("City: \(hotel.city ?? "N/A")")
+                        Text("State: \(hotel.state ?? "N/A")")
+                        Text("Country: \(hotel.country)")
+                        
+                        Text("Coordinates: \(hotel.geo.lat), \(hotel.geo.lon)")
+                        Text("Accuracy: \(hotel.geo.accuracy)")
+                        
+                        Text("Phone: \(hotel.phone ?? "N/A")")
+                        Text("Toll-Free: \(hotel.tollfree ?? "N/A")")
+                        Text("Email: \(hotel.email ?? "N/A")")
+                        Text("Fax: \(hotel.fax ?? "N/A")")
+                        Text("Website: \(hotel.url ?? "N/A")")
+                        
+                        Text("Check-in Time: \(hotel.checkin ?? "N/A")")
+                        Text("Check-out Time: \(hotel.checkout ?? "N/A")")
+                        Text("Price: \(hotel.price ?? "N/A")")
+                        
+                        Text(hotel.vacancy ? "Vacancy: Available" : "Vacancy: Full")
+                        Text(hotel.petsOk ? "Pets Allowed" : "No Pets")
+                        Text(hotel.freeBreakfast ? "Free Breakfast Available" : "No Free Breakfast")
+                        Text(hotel.freeInternet ? "Free Internet Available" : "No Free Internet")
+                        Text(hotel.freeParking ? "Free Parking Available" : "No Free Parking")
+                    }
+                    .frame(maxWidth:.infinity, alignment: .leading)
                 }
                 
                 GroupBox(label: Text("Reviews")) {
@@ -49,10 +65,7 @@ struct HotelDetailsView: View {
                 Button {
                     viewCoordinator.show(.hotelForm(viewMode: .edit(hotel: hotel)))
                 } label: {
-                    Image(systemName: "pencil")
-                        .resizable()
-                        .scaledToFill()
-                        .frame(height: 20)
+                    Text("Edit")
                 }
             }
         }
