@@ -14,8 +14,8 @@ struct HotelFormModel {
     var checkout: String = ""
     var price: String = ""
     var geo: GeoFormModel = GeoFormModel(lat: 0.0, lon: 0.0, accuracy: "")
-    var type: String = ""
-    var id: Int = 0
+    var type: String = "hotel"
+    var id: Int = Int.random(in: 1...(.max))
     var country: String = ""
     var city: String = ""
     var state: String = ""

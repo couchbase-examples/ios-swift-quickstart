@@ -10,6 +10,7 @@ struct HotelDetailsView: View {
                 Text(hotel.name ?? "")
                     .font(.largeTitle)
                     .bold()
+                    .accessibilityIdentifier("HotelNameLabel")
                 Text(hotel.title)
                     .font(.body)
                 Text(hotel.description)
@@ -67,6 +68,7 @@ struct HotelDetailsView: View {
                 } label: {
                     Text("Edit")
                 }
+                .accessibilityIdentifier("EditHotelButton")
             }
         }
     }

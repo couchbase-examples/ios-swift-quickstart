@@ -29,6 +29,7 @@ struct ContentView: View {
                             .frame(height: 20)
                             .tint(.white)
                     }
+                    .accessibilityIdentifier("addHotelButton")
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
