@@ -27,13 +27,14 @@ struct ContentView: View {
                             .resizable()
                             .scaledToFill()
                             .frame(height: 20)
+                            .tint(.white)
                     }
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Airport management")
+            .navigationTitle("Hotel Management App")
             .toolbarBackground(.visible, for: .navigationBar)
-            .toolbarBackground(.white, for: .navigationBar)
+            .toolbarBackground(.couchbaseRed, for: .navigationBar)
             .navigationDestination(for: Destination.self) { destination in
                 switch destination {
                 case .hotelDetails(let hotel):

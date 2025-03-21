@@ -11,9 +11,6 @@ struct HotelListView: View {
                     Section {
                         ForEach(hotels) { hotel in
                             itemView(hotel)
-                                .alignmentGuide(.listRowSeparatorLeading) { _ in
-                                    return 0
-                                }
                                 .swipeActions {
                                     Button {
                                         self.viewModel.hotelToDelete = hotel
@@ -29,6 +26,7 @@ struct HotelListView: View {
                                     }
                                     .tint(.blue)
                                 }
+                                .listRowSeparator(.hidden)
                         }
                     } header: {
                         viewHeader
@@ -38,6 +36,11 @@ struct HotelListView: View {
                 .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search by Name")
                 .onChange(of: viewModel.searchText) { newValue in
                     viewModel.onSearchTextChanged(newValue)
+                }
+                .onAppear {
+                    UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = UIColor.white
+                    UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = UIColor.black
+                    UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor.white
                 }
             } else {
                 Text("loading queried hotels")
@@ -61,7 +64,7 @@ struct HotelListView: View {
         VStack(spacing: 0){
             HStack {
                 HStack{
-                    Text("Hotel name")
+                    Text("Sort by name")
                         .frame(maxWidth: .infinity)
                     Image(systemName: viewModel.descendingList ? "arrowtriangle.up.fill" : "arrowtriangle.down.fill")
                         .tint(.black)
@@ -69,10 +72,6 @@ struct HotelListView: View {
                 .onTapGesture {
                     viewModel.onSortButtonTapped()
                 }
-                Text("City")
-                    .frame(maxWidth: .infinity)
-                Text("Country")
-                    .frame(maxWidth: .infinity)
             }
             .frame(maxHeight: .infinity)
         }
@@ -82,20 +81,28 @@ struct HotelListView: View {
         Button {
             viewCoordinator.show(.hotelDetails(hotel: item))
         } label: {
-            VStack{
-                HStack {
-                    Text(item.name ?? "")
-                        .lineLimit(2)
-                        .multilineTextAlignment(.leading)
-                        .frame(maxWidth: .infinity)
-                    Text(item.city ?? "")
-                        .lineLimit(1)
-                        .frame(maxWidth: .infinity)
-                    Text(item.country)
-                        .lineLimit(1)
-                        .frame(maxWidth: .infinity)
+            VStack(alignment: .leading, spacing: 5) {
+                Text(item.name ?? "")
+                    .font(.headline)
+                    .fontWeight(.bold)
+                
+                Text("\(item.address ?? "") \(item.city ?? "") \(item.country)")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+                    .fontWeight(.semibold)
+                if let phone = item.phone {
+                    Text(phone)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                        .fontWeight(.semibold)
                 }
-                .frame(maxHeight: .infinity)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding()
+            .background{
+                RoundedRectangle(cornerRadius: 5)
+                    .fill(Color.white)
+                    .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 3)
             }
         }
     }
