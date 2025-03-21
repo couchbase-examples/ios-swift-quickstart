@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		EC132B222D81B28B0020C772 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC132B212D81B28B0020C772 /* Preview Assets.xcassets */; };
-		EC132B2C2D81B28B0020C772 /* ios_swift_quickstartTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC132B2B2D81B28B0020C772 /* ios_swift_quickstartTests.swift */; };
 		EC132B362D81B28B0020C772 /* ios_swift_quickstartUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC132B352D81B28B0020C772 /* ios_swift_quickstartUITests.swift */; };
 		EC132B382D81B28B0020C772 /* ios_swift_quickstartUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC132B372D81B28B0020C772 /* ios_swift_quickstartUITestsLaunchTests.swift */; };
 		EC132B652D81B2E40020C772 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC132B452D81B2E30020C772 /* Assets.xcassets */; };
@@ -35,6 +34,10 @@
 		EC132B7C2D81B2E40020C772 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC132B642D81B2E40020C772 /* NetworkMonitor.swift */; };
 		EC132B7F2D81B3BB0020C772 /* CouchbaseLiteSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EC132B7E2D81B3BB0020C772 /* CouchbaseLiteSwift */; };
 		EC132B852D81B5280020C772 /* ios_swift_quickstartApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC132B842D81B5280020C772 /* ios_swift_quickstartApp.swift */; };
+		EC2F77BF2D89A7B2004051AA /* CRUDAndQueryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2F77BE2D89A7B2004051AA /* CRUDAndQueryUITests.swift */; };
+		EC5A7B112D8ABEA700FCC64E /* DatabaseManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5A7B102D8ABEA700FCC64E /* DatabaseManagerTests.swift */; };
+		EC9E62932D884F75001B300D /* HotelFormViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E62922D884F75001B300D /* HotelFormViewModelTests.swift */; };
+		EC9E62952D8856A8001B300D /* HotelListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E62942D8856A8001B300D /* HotelListViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +61,6 @@
 		EC132B172D81B2890020C772 /* ios-swift-quickstart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-swift-quickstart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC132B212D81B28B0020C772 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EC132B272D81B28B0020C772 /* ios-swift-quickstartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-swift-quickstartTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC132B2B2D81B28B0020C772 /* ios_swift_quickstartTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_swift_quickstartTests.swift; sourceTree = "<group>"; };
 		EC132B312D81B28B0020C772 /* ios-swift-quickstartUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-swift-quickstartUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC132B352D81B28B0020C772 /* ios_swift_quickstartUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_swift_quickstartUITests.swift; sourceTree = "<group>"; };
 		EC132B372D81B28B0020C772 /* ios_swift_quickstartUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_swift_quickstartUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -85,6 +87,10 @@
 		EC132B632D81B2E40020C772 /* NetworkNotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkNotificationView.swift; sourceTree = "<group>"; };
 		EC132B642D81B2E40020C772 /* NetworkMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		EC132B842D81B5280020C772 /* ios_swift_quickstartApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ios_swift_quickstartApp.swift; sourceTree = "<group>"; };
+		EC2F77BE2D89A7B2004051AA /* CRUDAndQueryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CRUDAndQueryUITests.swift; sourceTree = "<group>"; };
+		EC5A7B102D8ABEA700FCC64E /* DatabaseManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManagerTests.swift; sourceTree = "<group>"; };
+		EC9E62922D884F75001B300D /* HotelFormViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelFormViewModelTests.swift; sourceTree = "<group>"; };
+		EC9E62942D8856A8001B300D /* HotelListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelListViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,7 +167,9 @@
 		EC132B2A2D81B28B0020C772 /* ios-swift-quickstartTests */ = {
 			isa = PBXGroup;
 			children = (
-				EC132B2B2D81B28B0020C772 /* ios_swift_quickstartTests.swift */,
+				EC9E62922D884F75001B300D /* HotelFormViewModelTests.swift */,
+				EC9E62942D8856A8001B300D /* HotelListViewModelTests.swift */,
+				EC5A7B102D8ABEA700FCC64E /* DatabaseManagerTests.swift */,
 			);
 			path = "ios-swift-quickstartTests";
 			sourceTree = "<group>";
@@ -171,6 +179,7 @@
 			children = (
 				EC132B352D81B28B0020C772 /* ios_swift_quickstartUITests.swift */,
 				EC132B372D81B28B0020C772 /* ios_swift_quickstartUITestsLaunchTests.swift */,
+				EC2F77BE2D89A7B2004051AA /* CRUDAndQueryUITests.swift */,
 			);
 			path = "ios-swift-quickstartUITests";
 			sourceTree = "<group>";
@@ -418,7 +427,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC132B2C2D81B28B0020C772 /* ios_swift_quickstartTests.swift in Sources */,
+				EC9E62932D884F75001B300D /* HotelFormViewModelTests.swift in Sources */,
+				EC9E62952D8856A8001B300D /* HotelListViewModelTests.swift in Sources */,
+				EC5A7B112D8ABEA700FCC64E /* DatabaseManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +438,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC132B362D81B28B0020C772 /* ios_swift_quickstartUITests.swift in Sources */,
+				EC2F77BF2D89A7B2004051AA /* CRUDAndQueryUITests.swift in Sources */,
 				EC132B382D81B28B0020C772 /* ios_swift_quickstartUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -632,7 +644,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "couchbase.ios-swift-quickstartTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -651,7 +663,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "couchbase.ios-swift-quickstartTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -669,9 +681,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "couchbase.ios-swift-quickstartUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -686,9 +700,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "couchbase.ios-swift-quickstartUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

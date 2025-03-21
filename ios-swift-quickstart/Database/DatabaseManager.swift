@@ -111,6 +111,23 @@ class DatabaseManager {
         }
     }
     
+    func deleteElementWithName(_ name: String) {
+        do {
+            guard let collection = try database?.collection(name: "hotel", scope: "inventory") else { return }
+            let query = try database?.createQuery("SELECT META().id FROM inventory.hotel WHERE type = 'hotel' AND name = '\(name)'")
+            
+            guard let results = try query?.execute() else { return }
+            for result in results {
+                let docsProps = result.toDictionary()
+                guard let docid = docsProps["id"] as? String else { return }
+                guard let doc = try collection.document(id: docid) else { return }
+                try collection.delete(document: doc)
+            }
+        } catch {
+            
+        }
+    }
+    
     private func getStartedWithReplication (replication: Bool) throws {
         let configuration: ConfigurationModel? = ConfigurationManager.shared.getConfiguration()
         
