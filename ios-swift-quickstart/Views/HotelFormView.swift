@@ -17,14 +17,17 @@ struct HotelFormView: View {
     
     var body: some View {
         Form {
-            TextField("Name", text: $viewModel.hotel.name)
-                .accessibilityIdentifier("NameFormTextField")
-            TextField("Title", text: $viewModel.hotel.title)
-                .accessibilityIdentifier("TitleFormTextField")
-    
-            TextField("Description",text: $viewModel.hotel.description, axis: .vertical)
-                .accessibilityIdentifier("DescriptionFormTextField")
-                .frame(height: 100)
+            Section{
+                TextField("Name", text: $viewModel.hotel.name)
+                    .accessibilityIdentifier("NameFormTextField")
+                TextField("Title", text: $viewModel.hotel.title)
+                    .accessibilityIdentifier("TitleFormTextField")
+                
+                TextField("Description",text: $viewModel.hotel.description, axis: .vertical)
+                    .accessibilityIdentifier("DescriptionFormTextField")
+                    .frame(height: 100)
+            }
+            .listRowBackground(Color(uiColor: .systemGray6))
             
             Section {
                 TextField("Address", text: $viewModel.hotel.address)
@@ -60,7 +63,9 @@ struct HotelFormView: View {
                     .accessibilityIdentifier("CheckoutFormTextField")
                 TextField("Price", text: $viewModel.hotel.price)
                     .accessibilityIdentifier("PriceFormTextField")
-                
+            }
+            .listRowBackground(Color(uiColor: .systemGray6))
+            Section {
                 Toggle("Vacancy", isOn: $viewModel.hotel.vacancy)
                     .accessibilityIdentifier("VacancyFormToggle")
                 Toggle("Pets Allowed", isOn: $viewModel.hotel.petsOk)
@@ -72,8 +77,12 @@ struct HotelFormView: View {
                 Toggle("Free Parking", isOn: $viewModel.hotel.freeParking)
                     .accessibilityIdentifier("ParkingFormToggle")
             }
+            .listRowBackground(Color(uiColor: .systemGray6))
         }
+        .scrollContentBackground(.hidden)
+        .background(Color.white.ignoresSafeArea())
         .navigationTitle(viewModel.getTitle())
+        .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {

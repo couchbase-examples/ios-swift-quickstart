@@ -39,23 +39,23 @@ struct ConfigurationManager {
     
     private func parseConfiguration(dictionary: [String: Any]) -> ConfigurationModel? {
         guard let capella = dictionary[Constants.capellaURLKey] as? String, !capella.isEmpty else {
-            ErrorManager.shared.showError(error: ConfigurationErrors.cappellaURLMissing)
+            ErrorManager.shared.showError(error: ConfigurationErrors.configError)
             return nil
         }
         guard let capellaEndpointURL = URL(string: capella) else {
-            ErrorManager.shared.showError(error: ConfigurationErrors.cappellaURLParsing)
+            ErrorManager.shared.showError(error: ConfigurationErrors.configError)
             return nil
         }
         guard let authentication = dictionary[Constants.authenticationKey] as? [String: Any] else {
-            ErrorManager.shared.showError(error: ConfigurationErrors.authenticationMissing)
+            ErrorManager.shared.showError(error: ConfigurationErrors.configError)
             return nil
         }
         guard let userName = authentication[Constants.userNameKey] as? String, !userName.isEmpty else {
-            ErrorManager.shared.showError(error: ConfigurationErrors.usernameMissing)
+            ErrorManager.shared.showError(error: ConfigurationErrors.configError)
             return nil
         }
         guard let password = authentication[Constants.passwordKey] as? String, !password.isEmpty else {
-            ErrorManager.shared.showError(error: ConfigurationErrors.passwordMissing)
+            ErrorManager.shared.showError(error: ConfigurationErrors.configError)
             return nil
         }
         return ConfigurationModel(capellaEndpointURL: capellaEndpointURL, username: userName, password: password)

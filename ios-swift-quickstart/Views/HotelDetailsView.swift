@@ -7,16 +7,21 @@ struct HotelDetailsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 10) {
-                Text(hotel.name ?? "")
-                    .font(.largeTitle)
-                    .bold()
-                    .accessibilityIdentifier("HotelNameLabel")
-                Text(hotel.title)
-                    .font(.body)
-                Text(hotel.description)
-                    .font(.body)
-                    .multilineTextAlignment(.leading)
+                GroupBox {
+                    VStack(alignment: .leading) {
+                        Text(hotel.name ?? "")
+                            .font(.largeTitle)
+                            .bold()
+                            .accessibilityIdentifier("HotelNameLabel")
+                        Text(hotel.title)
+                            .font(.body)
+                        Text(hotel.description)
+                            .font(.body)
+                            .multilineTextAlignment(.leading)
+                            .frame(maxWidth:.infinity, alignment: .leading)
+                    }
                     .frame(maxWidth:.infinity, alignment: .leading)
+                }
                 
                 GroupBox {
                     VStack(alignment: .leading) {
@@ -37,7 +42,12 @@ struct HotelDetailsView: View {
                         Text("Check-in Time: \(hotel.checkin ?? "N/A")")
                         Text("Check-out Time: \(hotel.checkout ?? "N/A")")
                         Text("Price: \(hotel.price ?? "N/A")")
-                        
+                    }
+                    .frame(maxWidth:.infinity, alignment: .leading)
+                }
+                
+                GroupBox {
+                    VStack(alignment: .leading) {
                         Text(hotel.vacancy ? "Vacancy: Available" : "Vacancy: Full")
                         Text(hotel.petsOk ? "Pets Allowed" : "No Pets")
                         Text(hotel.freeBreakfast ? "Free Breakfast Available" : "No Free Breakfast")

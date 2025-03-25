@@ -11,7 +11,7 @@ struct ContentView: View {
             ZStack {
                 HotelListView()
                 if let error = $errorManager.errors.first {
-                    CustomErrorView(title: error.title.wrappedValue, message: error.message.wrappedValue) {
+                    CustomErrorView(title: error.title.wrappedValue, message: error.message.wrappedValue, closable: error.closable.wrappedValue) {
                         errorManager.dismissAndShowNext()
                     }
                     .transition(.scale)

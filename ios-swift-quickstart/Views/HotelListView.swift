@@ -63,14 +63,16 @@ struct HotelListView: View {
     var viewHeader: some View {
         VStack(spacing: 0){
             HStack {
-                HStack{
-                    Text("Sort by name")
-                        .frame(maxWidth: .infinity)
-                    Image(systemName: viewModel.descendingList ? "arrowtriangle.up.fill" : "arrowtriangle.down.fill")
-                        .tint(.black)
-                }
-                .onTapGesture {
-                    viewModel.onSortButtonTapped()
+                if !(viewModel.hotels?.isEmpty ?? true) {
+                    HStack{
+                        Text("Sort by name")
+                            .frame(maxWidth: .infinity)
+                        Image(systemName: viewModel.descendingList ? "arrowtriangle.up.fill" : "arrowtriangle.down.fill")
+                            .tint(.black)
+                    }
+                    .onTapGesture {
+                        viewModel.onSortButtonTapped()
+                    }
                 }
             }
             .frame(maxHeight: .infinity)

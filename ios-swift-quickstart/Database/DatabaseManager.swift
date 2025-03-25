@@ -133,7 +133,7 @@ class DatabaseManager {
         
         if replication {
             guard let configuration else {
-                ErrorManager.shared.showError(error: ConfigurationErrors.replicatorConfigMissing)
+                ErrorManager.shared.showError(error: ConfigurationErrors.configError)
                 return
             }
             // Create replicators to push and pull changes to and from the cloud.
