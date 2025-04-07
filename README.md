@@ -40,7 +40,7 @@ This sample is ideal for building apps that must remain usable without a network
 - Framework: SwiftUI  
 - Dependency Management: Swift Package Manager (SPM)  
 - Testing: XCTest (Unit + UI Tests)  
-- Database: Couchbase Lite Swift SDK (3.2.1+)
+- Database: Couchbase Lite Swift SDK (3.2.1)
 
 
 ## Installation Instructions
@@ -163,7 +163,7 @@ To run the app:
 
 You should see the Hotels Management App show up in an emulator with the travel-sample hotels list populated.
 
-<img src="https://github.com/user-attachments/assets/4e249514-2c3d-4c20-b112-bdbbf4a59378" alt="Simulator Screenshot - iPhone 16 Pro" height="450"/>
+<img src="https://github.com/user-attachments/assets/4e249514-2c3d-4c20-b112-bdbbf4a59378" alt="Simulator Screenshot - iPhone 16 Pro" height="650"/>
 
 ### ⚠️ Warning
 
