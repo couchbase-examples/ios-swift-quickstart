@@ -163,8 +163,7 @@ To run the app:
 
 You should see the Hotels Management App show up in an emulator with the travel-sample hotels list populated.
 
-![Simulator Screenshot - iPhone 16 Pro - 2025-04-07 at 20 28 36](https://github.com/user-attachments/assets/4e249514-2c3d-4c20-b112-bdbbf4a59378)
-
+<img src="https://github.com/user-attachments/assets/4e249514-2c3d-4c20-b112-bdbbf4a59378" alt="Simulator Screenshot - iPhone 16 Pro" height="450"/>
 
 ### ⚠️ Warning
 
