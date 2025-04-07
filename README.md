@@ -161,6 +161,11 @@ To run the app:
   *(Top bar → change “Any iOS Device” to a listed simulator)*  
 - Click the **Run** button or press `Cmd + R`
 
+You should see the Hotels Management App show up in an emulator with the travel-sample hotels list populated.
+
+![Simulator Screenshot - iPhone 16 Pro - 2025-04-07 at 20 28 36](https://github.com/user-attachments/assets/4e249514-2c3d-4c20-b112-bdbbf4a59378)
+
+
 ### ⚠️ Warning
 
 Before running the app, make sure that **Swift Package Manager** has finished downloading the Couchbase SDK.
