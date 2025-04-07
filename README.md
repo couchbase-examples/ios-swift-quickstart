@@ -1,4 +1,4 @@
-# Hotel Management Sample App (iOS – Couchbase Lite + Capella)
+<img width="1694" alt="Screenshot 2025-04-07 at 20 03 30" src="https://github.com/user-attachments/assets/f3516cce-5605-4a45-a53b-e112d130d292" /># Hotel Management Sample App (iOS – Couchbase Lite + Capella)
 
 ## Introduction
 
@@ -72,6 +72,8 @@ Under **Choose collections to link**:
 - Enable the `hotel` collection by switching the Link toggle to On
 
 Click the **Create App Endpoint** button. You’ll be redirected to the App Endpoints list.
+
+<img width="1694" alt="Screenshot 2025-04-07 at 20 03 30" src="https://github.com/user-attachments/assets/66e0a312-dc80-44a9-8ef9-ab46866d3f8c" />
 
 ### Set up App Endpoint security
 
