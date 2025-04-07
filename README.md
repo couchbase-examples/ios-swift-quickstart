@@ -1,4 +1,4 @@
-# Hotel Management Sample App (iOS – Couchbase Lite + Capella)
+# Hotel Management Sample App (Couchbase Lite Swift SDK + Swift UI + Capella)
 
 ## Introduction
 
@@ -15,6 +15,12 @@ It covers the essentials of:
 - Connecting a SwiftUI interface to local database content
 
 This sample is ideal for building apps that must remain usable without a network connection and synchronize data reliably once connectivity is restored.
+
+## Setup and Technology Stack
+
+- Capella / Capella App Services
+- Couchbase Lite Swift SDK
+- Quick Start iOS Swift App
 
 ## Features
 
