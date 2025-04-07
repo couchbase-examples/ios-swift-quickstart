@@ -1,4 +1,4 @@
-# Hotel Management Sample App (Couchbase Lite Swift SDK + Swift UI + Capella)
+# Hotel Management Quick Start App (Couchbase Lite Swift SDK + Swift UI + Capella)
 
 ## Introduction
 
