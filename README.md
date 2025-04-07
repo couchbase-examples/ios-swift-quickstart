@@ -1,12 +1,20 @@
 # Hotel Management Sample App (iOS – Couchbase Lite + Capella)
 
-## Overview
+## Introduction
 
-This is an example app of a simple iOS app that uses the Couchbase Lite database. The app lists a set of Hotels that are provided as part of the Couchbase Travel-Sample dataset.
+This iOS sample app demonstrates how to build a simple offline-first SwiftUI application using Couchbase Lite and Capella App Services. The app presents a basic hotel listing interface powered by data from the `travel-sample` dataset, which is hosted in Couchbase Capella and synced locally to the device.
 
-This app assumes you have a Capella Free Tier operational cluster with the travel-sample dataset installed.  
-To find out more information about the free tier, please visit:  
-👉 [Couchbase Capella Free Tier](https://www.couchbase.com/products/capella)
+The project serves as a quickstart example for building mobile apps that require embedded database functionality with support for local reads/writes, flexible querying, and real-time synchronization with the cloud.
+
+It covers the essentials of:
+
+- Couchbase Lite database setup and integration on iOS using the Swift SDK  
+- Performing basic create, read, update, and delete (CRUD) operations  
+- Syncing documents from a remote Capella cluster using App Services and access control  
+- Configuring secure app users and channels for collection-based sync  
+- Connecting a SwiftUI interface to local database content
+
+This sample is ideal for building apps that must remain usable without a network connection and synchronize data reliably once connectivity is restored.
 
 ## Features
 
