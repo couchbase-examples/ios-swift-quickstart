@@ -1,4 +1,4 @@
-<img width="1694" alt="Screenshot 2025-04-07 at 20 03 30" src="https://github.com/user-attachments/assets/f3516cce-5605-4a45-a53b-e112d130d292" /># Hotel Management Sample App (iOS – Couchbase Lite + Capella)
+# Hotel Management Sample App (iOS – Couchbase Lite + Capella)
 
 ## Introduction
 
@@ -101,7 +101,9 @@ Under **Assign Channels**:
 
 - Locate the `hotel` collection under **Linked Collections**
 - Enter the Admin Channel name `hotel` and hit the Enter key  
-  > It should appear as a chip/tag.
+  > It should appear as a chip or tag.
+  
+![Screenshot 2025-02-27 at 4 13 50 PM](https://github.com/user-attachments/assets/6837854b-d8bc-4735-851d-e000953bedcf)
 
 Click the **Create App User** button.
 
@@ -120,6 +122,7 @@ Use the terminal to clone the GitHub repository:
 
 ```bash
 git clone https://github.com/DominikBrozioKruko/ios-swift-quickstart
+```
 
 ### Open the project in Xcode
 
