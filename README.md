@@ -18,6 +18,8 @@ This sample is ideal for building apps that must remain usable without a network
 
 ## Setup and Technology Stack
 
+<img width="700" alt="Screenshot 2025-04-07 at 20 23 39" src="https://github.com/user-attachments/assets/8c040698-1e9b-4507-b2f0-345a32a7725a" />
+
 - Capella / Capella App Services
 - Couchbase Lite Swift SDK
 - Quick Start iOS Swift App
