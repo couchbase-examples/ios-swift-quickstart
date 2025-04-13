@@ -1,20 +1,29 @@
-# Hotel Management Quick Start App (Couchbase Lite Swift SDK + Swift UI + Capella)
+# Hotel Management Quick Start App using Couchbase Lite Swift SDK + Swift UI + Capella App Services
 
 ## Introduction
+[Couchbase Mobile](https://docs.couchbase.com/home/mobile.html) brings the power of NoSQL to the edge with offline-first data sync. It is comprised of three components:
 
-This iOS sample app demonstrates how to build a simple offline-first SwiftUI application using Couchbase Lite and Capella App Services. The app presents a basic hotel listing interface powered by data from the `travel-sample` dataset, which is hosted in Couchbase Capella and synced locally to the device.
+- [Couchbase Lite](https://docs.couchbase.com/home/mobile.html), local-first,  embedded, NoSQL JSON Document database for your mobile, desktop and embedded apps
+- Sync Gateway, an internet-facing component mechanism that securely syncs data between Couchbase Lite clients and Couchbase server, and
+- Couchbase Server, a highly scalable, distributed NoSQL database platform backing data store
 
-The project serves as a quickstart example for building mobile apps that require embedded database functionality with support for local reads/writes, flexible querying, and real-time synchronization with the cloud.
+Couchbase Server and Sync Gateway can be deployed in a self-managed configuration or developers can leverage **Capella**, Couchbase's fully managed Couchbase Server offering. This tutorial uses Capella App Services as backend data store and sync for Couchbase Lite App. Conveniently, Capella offers a [**free tier**](https://docs.couchbase.com/cloud/get-started/intro.html) which allows developers to get started for free to be able to explore the core features of Couchbase.
+
+## App Overview
+This iOS sample app demonstrates how to build a simple offline-first SwiftUI application using Couchbase Lite and Capella App Services, fully managed version of Sync gateway and Couchbase Server. The app presents a basic hotel listing interface powered by data from the `travel-sample` dataset, which is hosted in Couchbase Capella and synced locally to the device.
+
+The project serves as a quickstart to developers building mobile apps that require embedded database functionality with support for local reads/writes, flexible querying, and real-time synchronization with the cloud.
 
 It covers the essentials of:
 
+- Basics of App Services and configuring it for remote sync 
 - Couchbase Lite database setup and integration on iOS using the Swift SDK  
-- Performing basic create, read, update, and delete (CRUD) operations  
-- Syncing documents from a remote Capella cluster using App Services and access control  
-- Configuring secure app users and channels for collection-based sync  
+- Performing basic create, read, update, and delete (CRUD) operations
+- Basic Query anf Full Text Search (FTS)
+- Syncing documents from a remote Capella cluster using App Services
 - Connecting a SwiftUI interface to local database content
 
-This sample is ideal for building apps that must remain usable without a network connection and synchronize data reliably once connectivity is restored.
+This sample is ideal example of how developers can build apps that must remain usable without a network connection and synchronize data reliably once connectivity is restored.
 
 ## Setup and Technology Stack
 
@@ -45,15 +54,16 @@ This sample is ideal for building apps that must remain usable without a network
 
 ## Installation Instructions
 
-### Log into your Capella Free-Tier account
+### Capella Cluster Setup
 
-A listing of operational clusters should appear. Click on your demo-cluster in the list. This should bring up the Home page for your cluster.
+Sign up for Capella Free Tier and follow the steps to deploy a free tier cluster.
+
+When you create a free tier cluster, it will automatically import a **travel-sample** bucket with datasets that we will use in this app.  If you deleted the travel-sample bucket, you can reimport it from Data Tools-> Import tab.
+<< TODO: INSERT IMAGE>>
 
 ### Create a new App Service
 
-On the Home tab under the **Explore your cluster** section, find the section **Try App Services** and click on the link **Deploy App Services**.
-
-On the App Services page, click the **Create App Service** button. The Create App Services page should appear.
+Follow [instructions](https://docs.couchbase.com/cloud/get-started/create-account.html#app-services) to create a free tier App Services that links to the free tier cluster created in previous step
 
 On the Create App Services page:
 
@@ -92,7 +102,7 @@ On the **Security** tab:
 - If a message appears stating that the App Endpoint is paused, click the **Resume app endpoint** link  
   > This may take a few seconds.
 
-We will use the default access control and data validation scripts.
+We will use the default access control and data validation function, so no changes required there. By default, all documents in a collection are assigned to a channel with name associated with that collection. You can view the default function by navigating to the **Access Control & Data Validation** tab. 
 
 Click on the **App Users** tab in the left-hand navigation menu.
 
@@ -134,8 +144,8 @@ git clone https://github.com/DominikBrozioKruko/ios-swift-quickstart
 
 ### Open the project in Xcode
 
-- Navigate to the `ios-swift-quickstart` folder  
-- Double-click the `ios-swift-quickstart.xcodeproj` file  
+- Navigate to the `ios-swift-quickstart` folder where the repo was closed 
+- Open the `ios-swift-quickstart.xcodeproj` file  
   > This should launch Xcode with the project loaded
 
 ### Configure the app
@@ -145,7 +155,7 @@ Inside the Project Navigator in Xcode:
 - Locate the `Config.swift` file inside the `ios-swift-quickstart` folder
 - Open the file and provide the following configuration values:
 
-  - **Remote Capella endpoint URL** – Paste the URL copied from the Connect page  
+  - **Remote Capella endpoint URL** – Paste the "Public URL" from the Connect page of App Services (discussed earlier)
   - **Authentication / Username** – Enter the App User username  
   - **Authentication / Password** – Enter the App User password
 
@@ -173,12 +183,19 @@ Before running the app, make sure that **Swift Package Manager** has finished do
 - If you see a spinner icon next to the dependency, it’s still loading  
 - Wait for it to finish before launching the app
 
+### Try it Out
+TODO
+
 ## Learn more
 
 To learn more about Couchbase Lite and the Capacitor plugin, look at the following resources:
 - [Couchbase lite on swift](#https://docs.couchbase.com/couchbase-lite/current/swift/quickstart.html)
+- [App Services](https://docs.couchbase.com/cloud/app-services/index.html)
+- [App Services Access Control Concepts- Channels](https://docs.couchbase.com/cloud/app-services/channels/channels.html)
+- [App Services Access Control Concepts- Access Control & Data Validation](https://docs.couchbase.com/cloud/app-services/deployment/access-control-data-validation.html)
 
-Join our community of developers 
+## Getting Help
+You can reach out to use on the Github repo or join our community of developers 
 
 - [Discord community](https://bit.ly/3NbK5vg): Chat with Couchbase developers and ask questions.
 - [Stack Overflow community](https://stackoverflow.com/tags/couchbase/info/): Ask questions.
