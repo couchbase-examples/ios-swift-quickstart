@@ -184,7 +184,141 @@ Before running the app, make sure that **Swift Package Manager** has finished do
 - Wait for it to finish before launching the app
 
 ### Try it Out
-TODO
+
+After running the app successfully, explore the following key features. Each feature below is supported by code inside the `DatabaseManager.swift` class and demonstrates how Couchbase Lite powers this offline-first experience.
+
+#### Database & Replication Operations
+
+**Description**:  
+On launch, the app initializes a local Couchbase Lite database and sets up continuous replication with Capella App Services. The `hotel` collection from the `inventory` scope is synced down from the remote cluster.
+
+```swift
+database = try Database(name: "travel-sample")
+collection = try database?.createCollection(name: "hotel", scope: "inventory")
+
+...
+
+let targetEndpoint = URLEndpoint(url: configuration.capellaEndpointURL)
+var replConfig = ReplicatorConfiguration(target: targetEndpoint)
+replConfig.continuous = true
+replConfig.authenticator = BasicAuthenticator(username: configuration.username, password: configuration.password)
+replConfig.addCollection(collection)
+replicator = Replicator(config: replConfig)
+replicator?.start()
+```
+
+Learn more:  
+- [Database Initialization](https://docs.couchbase.com/couchbase-lite/current/swift/database.html#open-db)  
+- [Replication](https://docs.couchbase.com/couchbase-lite/current/swift/replication.html)
+
+---
+
+#### Document CRUD Operations
+
+**Description**:  
+You can add, update, and delete hotel documents from the local database using simple methods.
+
+**Add a hotel document:**
+```swift
+let doc = MutableDocument()
+let encodedHotel = try JSONEncoder().encode(hotel)
+let jsonString = String(data: encodedHotel, encoding: .utf8)!
+try doc.setJSON(jsonString)
+try collection.save(document: doc)
+```
+
+**Update a hotel document:**
+```swift
+let query = try database?.createQuery("SELECT META().id FROM inventory.hotel WHERE type = 'hotel' AND id = \(hotel.id)")
+let results = try query?.execute()
+for result in results {
+    let docid = result.toDictionary()["id"] as? String
+    let doc = try collection.document(id: docid!)
+    let mutableDoc = doc?.toMutable()
+    let jsonString = String(data: try JSONEncoder().encode(hotel), encoding: .utf8)!
+    try mutableDoc?.setJSON(jsonString)
+    try collection.save(document: mutableDoc!)
+}
+```
+
+**Delete a hotel document:**
+```swift
+let query = try database?.createQuery("SELECT META().id FROM inventory.hotel WHERE type = 'hotel' AND id = \(hotel.id)")
+let results = try query?.execute()
+for result in results {
+    let docid = result.toDictionary()["id"] as? String
+    let doc = try collection.document(id: docid!)
+    try collection.delete(document: doc!)
+}
+```
+
+Learn more:  
+- [Working with Documents](https://docs.couchbase.com/couchbase-lite/current/swift/document.html)
+
+---
+
+#### Query & Live Query Updates
+
+**Description**:  
+The app performs flexible queries using SQL-like syntax (N1QL). A live query listener updates the UI whenever matching data changes in real time.
+
+```swift
+let query = try database?.createQuery("SELECT * FROM inventory.hotel WHERE type = 'hotel' ORDER BY name ASC")
+lastQueryToken = query?.addChangeListener { change in
+    guard let results = change.results else { return }
+    var hotels: [Hotel] = []
+    for result in results {
+        let hotelDoc = try? JSONDecoder().decode(hotelDocumentModel.self, from: Data(result.toJSON().utf8))
+        if let hotel = hotelDoc?.hotel {
+            hotels.append(hotel)
+        }
+    }
+    self.queryUpdatesSubject.send(hotels)
+}
+```
+
+🔗 Learn more:  
+- [SQL++ Queries](https://docs.couchbase.com/couchbase-lite/current/swift/query-n1ql-mobile.html)  
+- [Live Queries](https://docs.couchbase.com/couchbase-lite/current/swift/query-live.html)
+
+---
+
+#### Full-Text Search
+
+**Description**:  
+You can search hotel names using Couchbase Lite’s built-in Full Text Search (FTS). This is enabled via an index created on the `name` field.
+
+**Index creation:**
+```swift
+let indexConfig = FullTextIndexConfiguration(["name"], language: "en")
+try collection?.createIndex(withName: "hotelNameIndex", config: indexConfig)
+```
+
+**Search query:**
+```swift
+let query = try database?.createQuery("SELECT * FROM inventory.hotel WHERE MATCH(hotelNameIndex, '\(textSearch!)') AND type = 'hotel'")
+```
+
+Learn more:  
+- [Full Text Search](https://docs.couchbase.com/couchbase-lite/current/swift/fts.html)
+
+---
+
+#### Offline-First Sync
+
+**Description**:  
+Even if you disconnect from the network or Capella App Services go offline, the app continues working with the local database. Any local changes will sync automatically when the connection is restored.
+
+**Try this:**
+
+1. Disable your network or pause the Capella App Endpoint.
+2. Add, edit, or delete a hotel in the app.
+3. Reconnect to the network and watch the changes sync automatically.
+4. Or — try modifying a document in the Capella UI and see it show up in the app.
+
+Learn more:  
+- [Offline-First Architecture](https://www.couchbase.com/blog/couchbase-offline-first-app-use-cases/)
+
 
 ## Learn more
 
