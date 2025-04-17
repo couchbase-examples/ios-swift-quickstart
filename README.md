@@ -187,7 +187,7 @@ Before running the app, make sure that **Swift Package Manager** has finished do
 
 After running the app successfully, explore the following key features. Each feature below is supported by code inside the `DatabaseManager.swift` class and demonstrates how Couchbase Lite powers this offline-first experience.
 
-#### Database & Replication Operations
+#### Database and Replication Operations
 
 **Description**:  
 On launch, the app initializes a local Couchbase Lite database and sets up continuous replication with Capella App Services. The `hotel` collection from the `inventory` scope is synced down from the remote cluster.
@@ -210,8 +210,6 @@ replicator?.start()
 Learn more:  
 - [Database Initialization](https://docs.couchbase.com/couchbase-lite/current/swift/database.html#open-db)  
 - [Replication](https://docs.couchbase.com/couchbase-lite/current/swift/replication.html)
-
----
 
 #### Document CRUD Operations
 
@@ -252,10 +250,7 @@ for result in results {
 }
 ```
 
-Learn more:  
-- [Working with Documents](https://docs.couchbase.com/couchbase-lite/current/swift/document.html)
-
----
+Learn more: [Working with Documents](https://docs.couchbase.com/couchbase-lite/current/swift/document.html)
 
 #### Query & Live Query Updates
 
@@ -277,7 +272,7 @@ lastQueryToken = query?.addChangeListener { change in
 }
 ```
 
-🔗 Learn more:  
+Learn more:  
 - [SQL++ Queries](https://docs.couchbase.com/couchbase-lite/current/swift/query-n1ql-mobile.html)  
 - [Live Queries](https://docs.couchbase.com/couchbase-lite/current/swift/query-live.html)
 
@@ -299,10 +294,7 @@ try collection?.createIndex(withName: "hotelNameIndex", config: indexConfig)
 let query = try database?.createQuery("SELECT * FROM inventory.hotel WHERE MATCH(hotelNameIndex, '\(textSearch!)') AND type = 'hotel'")
 ```
 
-Learn more:  
-- [Full Text Search](https://docs.couchbase.com/couchbase-lite/current/swift/fts.html)
-
----
+Learn more: [Full Text Search](https://docs.couchbase.com/couchbase-lite/current/swift/fts.html)
 
 #### Offline-First Sync
 
@@ -316,8 +308,7 @@ Even if you disconnect from the network or Capella App Services go offline, the 
 3. Reconnect to the network and watch the changes sync automatically.
 4. Or — try modifying a document in the Capella UI and see it show up in the app.
 
-Learn more:  
-- [Offline-First Architecture](https://www.couchbase.com/blog/couchbase-offline-first-app-use-cases/)
+Learn more: [Offline-First Architecture](https://www.couchbase.com/blog/couchbase-offline-first-app-use-cases/)
 
 
 ## Learn more
