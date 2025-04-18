@@ -27,7 +27,7 @@ This sample is ideal example of how developers can build apps that must remain u
 
 ## Setup and Technology Stack
 
-<img width="700" alt="Screenshot 2025-04-07 at 20 23 39" src="https://github.com/user-attachments/assets/8c040698-1e9b-4507-b2f0-345a32a7725a" />
+<img width="700" alt="Screenshot 2025-04-07 at 20 23 39" src="README-assets/1.png" />
 
 - Capella / Capella App Services
 - Couchbase Lite Swift SDK
@@ -173,7 +173,7 @@ To run the app:
 
 You should see the Hotels Management App show up in an emulator with the travel-sample hotels list populated.
 
-<img src="https://github.com/user-attachments/assets/4e249514-2c3d-4c20-b112-bdbbf4a59378" alt="Simulator Screenshot - iPhone 16 Pro" height="650"/>
+<img src="README-assets/4.png" alt="Simulator Screenshot - iPhone 16 Pro" height="650"/>
 
 ### ⚠️ Warning
 
