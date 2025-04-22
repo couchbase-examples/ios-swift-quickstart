@@ -6,7 +6,7 @@ struct HotelListView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            if let hotels = viewModel.hotels {
+            if let hotels = viewModel.hotels, !hotels.isEmpty {
                 List {
                     Section {
                         ForEach(hotels) { hotel in
@@ -43,7 +43,7 @@ struct HotelListView: View {
                     UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = UIColor.white
                 }
             } else {
-                Text("loading queried hotels")
+                ProgressView("loading queried hotels")
             }
         }
         .onAppear() {
