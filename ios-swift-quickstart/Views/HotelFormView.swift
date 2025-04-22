@@ -92,6 +92,7 @@ struct HotelFormView: View {
                     Text("Save")
                 }
                 .accessibilityIdentifier("HotelFormViewAcceptButton")
+                .disabled(!viewModel.modelDidChange)
             }
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: { dismiss() }) {

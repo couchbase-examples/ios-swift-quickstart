@@ -11,7 +11,7 @@ class DatabaseManager {
     private let queryUpdatesSubject = CurrentValueSubject<[Hotel], Never>([])
     
     init() {
-        Database.log.console.level = .verbose
+        Database.log.console.level = .info
         initializeDatabase()
     }
     
@@ -40,6 +40,7 @@ class DatabaseManager {
             for result in results {
                 let hotelDocumentModel = try? JSONDecoder().decode(hotelDocumentModel.self, from: Data(result.toJSON().utf8))
                 guard let hotel = hotelDocumentModel?.hotel else { continue }
+                print("Retrieved hotel item inside query list: name: \(hotel.name ?? "") id: \(hotel.id)")
                 hotels.append(hotel)
             }
             self.queryUpdatesSubject.send(hotels)
@@ -58,6 +59,7 @@ class DatabaseManager {
             startListeningForChanges(query: query)
             print(try query.explain())
         } catch {
+            print("Error during quering elements: \(error.localizedDescription)")
         }
     }
     
@@ -70,7 +72,7 @@ class DatabaseManager {
             try doc.setJSON(jsonString)
             try collection.save(document: doc)
         } catch {
-            
+            print("Error during adding new element: \(error.localizedDescription)")
         }
     }
     
@@ -90,7 +92,7 @@ class DatabaseManager {
                 try collection.save(document: mutableDoc)
             }
         } catch {
-            
+            print("Error during updating element: \(error.localizedDescription)")
         }
     }
     
@@ -107,7 +109,7 @@ class DatabaseManager {
                 try collection.delete(document: doc)
             }
         } catch {
-            
+            print("Error during deleting element: \(error.localizedDescription)")
         }
     }
     
@@ -124,7 +126,7 @@ class DatabaseManager {
                 try collection.delete(document: doc)
             }
         } catch {
-            
+            print("Error during deleting element: \(error.localizedDescription)")
         }
     }
     

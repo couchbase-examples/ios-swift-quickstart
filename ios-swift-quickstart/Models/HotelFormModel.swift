@@ -1,6 +1,6 @@
 
 
-struct HotelFormModel {
+struct HotelFormModel: Equatable {
     var title: String = ""
     var name: String = ""
     var address: String = ""
@@ -64,13 +64,13 @@ struct HotelFormModel {
     }
 }
 
-struct GeoFormModel {
+struct GeoFormModel: Equatable {
     var lat: Double
     var lon: Double
     var accuracy: String
 }
 
-struct ReviewFormModel {
+struct ReviewFormModel: Equatable {
     var content: String
     var ratings: [String: Double]
     var author: String

@@ -3,8 +3,12 @@ import Combine
 
 class HotelFormViewModel: ObservableObject {
 
-    @Published var hotel: HotelFormModel = HotelFormModel()
+    @Published var hotel: HotelFormModel
+    private let originalModel: HotelFormModel
     @Published private var viewCoordinator = ViewCoordinator.shared
+    var modelDidChange: Bool {
+        hotel != originalModel
+    }
     
     enum ViewMode: Hashable {
         case add
@@ -13,11 +17,14 @@ class HotelFormViewModel: ObservableObject {
     
     private let viewMode: ViewMode
     
-    init (viewMode: ViewMode) {
+    init(viewMode: ViewMode) {
         self.viewMode = viewMode
+        var hotelFormModel = HotelFormModel()
         if case .edit(let hotel) = viewMode {
-            self.hotel = HotelFormModel(from: hotel)
+            hotelFormModel = HotelFormModel(from: hotel)
         }
+        self.hotel = hotelFormModel
+        self.originalModel = hotelFormModel
     }
     
     func getTitle() -> String {
