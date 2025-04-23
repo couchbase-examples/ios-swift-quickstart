@@ -91,7 +91,7 @@ Under **Choose collections to link**:
 
 Click the **Create App Endpoint** button. You’ll be redirected to the App Endpoints list.
 
-<img width="1694" alt="Screenshot 2025-04-07 at 20 03 30" src="https://github.com/user-attachments/assets/66e0a312-dc80-44a9-8ef9-ab46866d3f8c" />
+<img width="1694" alt="Screenshot 2025-04-07 at 20 03 30" src="README-assets/2.png" />
 
 ### Set up App Endpoint security
 
@@ -121,7 +121,7 @@ Under **Assign Channels**:
 - Enter the Admin Channel name `hotel` and hit the Enter key  
   > It should appear as a chip or tag.
   
-![Screenshot 2025-02-27 at 4 13 50 PM](https://github.com/user-attachments/assets/6837854b-d8bc-4735-851d-e000953bedcf)
+![Screenshot 2025-02-27 at 4 13 50 PM](README-assets/3.png)
 
 Click the **Create App User** button.
 
