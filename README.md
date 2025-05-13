@@ -59,7 +59,6 @@ This sample is ideal example of how developers can build apps that must remain u
 Sign up for Capella Free Tier and follow the steps to deploy a free tier cluster.
 
 When you create a free tier cluster, it will automatically import a **travel-sample** bucket with datasets that we will use in this app.  If you deleted the travel-sample bucket, you can reimport it from Data Tools-> Import tab.
-<< TODO: INSERT IMAGE>>
 
 ### Create a new App Service
 
