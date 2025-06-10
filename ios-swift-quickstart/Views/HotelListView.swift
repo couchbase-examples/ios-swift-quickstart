@@ -6,27 +6,31 @@ struct HotelListView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            if let hotels = viewModel.hotels, !hotels.isEmpty {
+            if let hotels = viewModel.hotels {
                 List {
                     Section {
-                        ForEach(hotels) { hotel in
-                            itemView(hotel)
-                                .swipeActions {
-                                    Button {
-                                        self.viewModel.hotelToDelete = hotel
-                                        viewModel.showDeleteItemAlert = true
-                                    } label: {
-                                        Label("Delete", systemImage: "trash")
+                        if hotels.isEmpty {
+                            Text("No hotels found.")
+                        } else {
+                            ForEach(hotels) { hotel in
+                                itemView(hotel)
+                                    .swipeActions {
+                                        Button {
+                                            self.viewModel.hotelToDelete = hotel
+                                            viewModel.showDeleteItemAlert = true
+                                        } label: {
+                                            Label("Delete", systemImage: "trash")
+                                        }
+                                        .tint(.red)
+                                        Button {
+                                            viewCoordinator.show(.hotelForm(viewMode: .edit(hotel: hotel)))
+                                        } label: {
+                                            Label("Edit", systemImage: "pencil")
+                                        }
+                                        .tint(.blue)
                                     }
-                                    .tint(.red)
-                                    Button {
-                                        viewCoordinator.show(.hotelForm(viewMode: .edit(hotel: hotel)))
-                                    } label: {
-                                        Label("Edit", systemImage: "pencil")
-                                    }
-                                    .tint(.blue)
-                                }
-                                .listRowSeparator(.hidden)
+                                    .listRowSeparator(.hidden)
+                            }
                         }
                     } header: {
                         viewHeader

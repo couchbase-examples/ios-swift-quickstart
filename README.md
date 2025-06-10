@@ -151,7 +151,7 @@ git clone https://github.com/couchbase-examples/ios-swift-quickstart.git
 
 Inside the Project Navigator in Xcode:
 
-- Locate the `Config.swift` file inside the `ios-swift-quickstart` folder
+- Locate the `Config.plist` file inside the `ios-swift-quickstart` folder
 - Open the file and provide the following configuration values:
 
   - **Remote Capella endpoint URL** – Paste the "Public URL" from the Connect page of App Services (discussed earlier)
