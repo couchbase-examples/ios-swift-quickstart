@@ -55,14 +55,21 @@ class DatabaseManager {
     func queryElements(descending: Bool = false, textSearch: String? = nil) {
         do {
             stopListeningForChanges()
-            var sql = "SELECT * FROM inventory.hotel WHERE  type = 'hotel'"
-            if textSearch != nil {
-                sql += " AND MATCH(hotelNameIndex, '\(textSearch ?? "")*')"
+            
+            let parameters = Parameters()
+            parameters.setString("hotel", forName: "type")
+            let order = descending ? "DESC" : "ASC"
+            
+            var sql = "SELECT * FROM inventory.hotel WHERE type = $type"
+            if let textSearch = textSearch {
+                parameters.setString("\(textSearch)*", forName: "match")
+                sql += " AND MATCH(hotelNameIndex, $match)"
             }
-            sql += " ORDER BY name \(descending ? "DESC" : "ASC")"
+            sql += " ORDER BY name \(order)"
             
             guard let query = try database?.createQuery(sql) else { return }
-            
+            query.parameters = parameters
+    
             startListeningForChanges(query: query)
             print(try query.explain())
         } catch {
