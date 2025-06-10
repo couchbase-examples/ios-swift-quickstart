@@ -133,12 +133,12 @@ The **Connect** page will appear, showing the Public Connection string.
 - Click the **copy icon** next to the URL to copy the App Endpoint URL to your clipboard  
   > You’ll need this in the app configuration file.
 
-### Pull down the code
+### Clone this repository
 
 Use the terminal to clone the GitHub repository:
 
 ```bash
-git clone https://github.com/DominikBrozioKruko/ios-swift-quickstart
+git clone https://github.com/couchbase-examples/ios-swift-quickstart.git
 ```
 
 ### Open the project in Xcode
