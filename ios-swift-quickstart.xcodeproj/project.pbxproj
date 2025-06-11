@@ -58,6 +58,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AE80E8012DF86408002EC296 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		AE80E8022DF86472002EC296 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		AE80E8032DF86472002EC296 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		AE80E8042DF86472002EC296 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		AE80E8052DF86472002EC296 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
 		EC132B172D81B2890020C772 /* ios-swift-quickstart.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-swift-quickstart.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC132B212D81B28B0020C772 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EC132B272D81B28B0020C772 /* ios-swift-quickstartTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-swift-quickstartTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,12 +124,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AE80E8062DF86472002EC296 /* README-assets */ = {
+			isa = PBXGroup;
+			children = (
+				AE80E8022DF86472002EC296 /* 1.png */,
+				AE80E8032DF86472002EC296 /* 2.png */,
+				AE80E8042DF86472002EC296 /* 3.png */,
+				AE80E8052DF86472002EC296 /* 4.png */,
+			);
+			path = "README-assets";
+			sourceTree = "<group>";
+		};
 		EC132B0E2D81B2890020C772 = {
 			isa = PBXGroup;
 			children = (
 				EC132B192D81B2890020C772 /* ios-swift-quickstart */,
 				EC132B2A2D81B28B0020C772 /* ios-swift-quickstartTests */,
 				EC132B342D81B28B0020C772 /* ios-swift-quickstartUITests */,
+				AE80E8062DF86472002EC296 /* README-assets */,
+				AE80E8012DF86408002EC296 /* README.md */,
 				EC132B182D81B2890020C772 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -329,7 +347,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					EC132B162D81B2890020C772 = {
 						CreatedOnToolsVersion = 15.2;
@@ -586,6 +604,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ios-swift-quickstart/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Couchbase Hotel Manager";
@@ -616,6 +635,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ios-swift-quickstart/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Couchbase Hotel Manager";
@@ -641,7 +661,6 @@
 		EC132B3F2D81B28B0020C772 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -660,7 +679,6 @@
 		EC132B402D81B28B0020C772 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -679,7 +697,6 @@
 		EC132B422D81B28B0020C772 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -698,7 +715,6 @@
 		EC132B432D81B28B0020C772 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
